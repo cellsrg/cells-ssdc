@@ -1,0 +1,9 @@
+---
+# category ab
+name: ab
+constraints:
+- "[a-b]"
+labels:
+- a
+- b
+

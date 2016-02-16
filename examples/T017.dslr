@@ -1,0 +1,86 @@
+package ru.icc.cells.ssdc
+
+import ru.icc.cells.ssdc.model.*
+import ru.icc.cells.ssdc.model.style.*
+
+rule #1 lock-on-active
+    when
+        cell $c : cr < 3 || rb < 3
+    then
+        new label $c
+        update $c
+end
+
+rule #2 lock-on-active
+    when
+        cell $c : rt > 2, cl > 2
+    then
+        new entry $c
+        update $c
+end
+
+rule #3 no-loop true
+    when
+        label $l1 : cell.cl < 3, cell.rt == 1, $c : cell
+        label $l2 : cell.cl == $c.cl, cell.rt > 1 
+    then
+        set parent label $l1 -> $l2
+        update $l1
+        update $l2
+end
+
+rule #4 no-loop true
+    when
+        label $l1 : cell.rt == 1, ( cell.cl % 4 ) == 3, $c : cell
+        label $l2 : cell.rt == 2, cell.cl == $c.cl || cell.cl == $c.cr + 1 
+    then
+        set parent label $l1 -> $l2
+        update $l1
+        update $l2
+end
+
+rule #5 no-loop true
+    when
+        label $l1 : cell.rt == 1, ( cell.cl % 4 ) == 1, $c : cell
+        label $l2 : cell.rt == 2, cell.cl == $c.cl - 1 || cell.cl == $c.cr 
+    then
+        set parent label $l1 -> $l2
+        update $l1
+        update $l2
+end
+
+rule #6
+    when
+        label $l : cell.cl < 3, value matches "\\p{IsLatin}+\\d*"
+    then
+        set category "ROW_LAT_LABELS" -> $l
+end
+
+rule #7
+    when
+        label $l : cell.cl < 3, value matches "\\p{IsGreek}+\\d*"
+    then
+        set category "ROW_GREEK_LABELS" -> $l
+end
+
+rule #8
+    when
+        label $l : cell.cl > 2, value matches "\\p{IsLatin}+\\d*"
+    then
+        set category "COL_LAT_LABELS" -> $l
+end
+
+rule #9
+    when
+        label $l : cell.cl > 2, value matches "\\p{IsGreek}+\\d*"
+    then
+        set category "COL_GREEK_LABELS" -> $l
+end
+
+rule #10 no-loop true
+    when
+        label $l : terminal, $c : cell
+        entry $e : cell.cl == $c.cl || cell.cr == $c.cr || cell.rt == $c.rt
+    then
+        add label $l -> $e
+end

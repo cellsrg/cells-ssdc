@@ -1,0 +1,99 @@
+package ru.icc.cells.ssdc
+
+import ru.icc.cells.ssdc.model.*
+import ru.icc.cells.ssdc.model.style.*
+import static org.apache.commons.lang.StringUtils.substringBetween;
+
+rule #1 lock-on-active
+    when
+        cell $corner : cl == 1, rt == 1, blank
+        cell $c : rb <= $corner.rb, cl > $corner.cr, text matches "\\w+"
+    then
+        set mark @clabel -> $c
+        new label $c
+        update $c
+end
+
+rule #2 lock-on-active
+    when
+        cell $footer : onLastRow, $t1 : text.concat( "\n" )
+        cell $corner : cl == 1, rt == 1, blank
+        cell $c : rb <= $corner.rb, cl > $corner.cr, text matches "\\w+\\*+", $t2 : text.replaceAll("\\w+", "" ), $t3 : text.replaceAll("\\*+", "" ) 
+
+    then
+        set mark @clabel -> $c
+        new label String.format( "%s (%s)", $t3, substringBetween( $t1, $t2, '\n' ) ) -> $c
+        update $c
+end
+
+rule #3 lock-on-active
+    when
+        cell $corner : cl == 1, rt == 1, blank
+        cell $c : cr <= $corner.cr, rt > $corner.rb, text matches "\\w+"
+    then
+        set mark @rlabel -> $c
+        new label $c
+        update $c
+end
+
+rule #4 lock-on-active
+    when
+        cell $footer : onLastRow, $t1 : text.concat( "\n" )
+        cell $corner : cl == 1, rt == 1, blank
+        cell $c : cr <= $corner.cr, rt > $corner.rb, text matches "\\w+\\*+", $t2 : text.replaceAll("\\w+", "" ), $t3 : text.replaceAll("\\*+", "" )  
+    then
+        set mark @rlabel -> $c
+        new label String.format( "%s (%s)", $t3, substringBetween( $t1, $t2, '\n' ) ) -> $c
+        update $c
+end
+
+rule #5 lock-on-active
+    when
+        cell $corner : cl == 1, rt == 1, blank
+        cell $c : cl > $corner.cr, rt > $corner.rb, $t : text.replaceAll("\\*+", "" ) 
+    then
+        set mark @entry -> $c
+        new entry $t -> $c
+        update $c
+end
+
+rule #6 no-loop true
+    when
+        cell@rlabel $c1
+        cell@rlabel $c2 : cl == $c1.cl, cr == $c1.cr
+    then
+        group $c1.label -> $c2.label
+end
+
+rule #7 no-loop true
+    when
+        cell@clabel $c1
+        cell@clabel $c2 : rt == $c1.rt, rb == $c1.rb
+    then
+        group $c1.label -> $c2.label
+end
+
+rule #8 no-loop true
+    when
+        cell@rlabel $c1
+        cell@entry $c2 : rt >= $c1.rt, rb <= $c1.rb
+    then
+        add label $c1.label -> $c2.entry
+end
+
+rule #9 no-loop true
+    when
+        cell@clabel $c1 
+        cell@entry $c2 : cl >= $c1.cl, cr <= $c1.cr
+    then
+        add label $c1.label -> $c2.entry
+end
+
+rule #10 no-loop true
+    when
+        cell $footer : onLastRow, $t1 : text.concat( "\n" )
+        cell.entry $c : text matches "\\d+\\*+", $t2 : text.replaceFirst("\\d+", "" )
+    then
+        add label substringBetween( $t1, $t2, '\n' ) from "FOOTNOTES" -> $c.entry
+end
+

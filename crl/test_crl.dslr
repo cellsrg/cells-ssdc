@@ -1,0 +1,199 @@
+package ru.icc.cells.ssdc
+
+import ru.icc.cells.ssdc.model.*
+import ru.icc.cells.ssdc.model.style.*
+
+rule #1000
+	when
+		cell $c
+	then
+		set mark @clabel -> $c
+		set mark @rlabel -> $c
+		set mark @entry -> $c
+		update $c
+end
+
+rule #2000
+	when
+		cell $c
+	then
+		new label $c.getText().substring(0,2) -> $c
+		new label "1" -> $c
+		new label $c
+		new label StringUtility.doSomething( $c.getText() ) -> $c
+		update $c
+end
+
+rule #3000
+	when
+		cell $c
+	then
+		new entry $c.getText().substring(0,2) -> $c
+		new entry "1" -> $c
+		new entry $c
+		new entry StringUtility.doSomething( $c.getText() ) -> $c
+		update $c
+end
+
+rule #4000
+	when
+		cell $c
+	then
+		add label $c1.label -> $c2.entry
+		add label $l -> $c.entry
+		add label $c.label -> $e
+		add label $c1.label[0] -> $c2.entry[0]
+		add label $l -> $c.entry[1]
+		add label $c.label[2] -> $e
+		add label $l -> $e
+		add label "a" from $d  -> $e
+		add label "a" from "A" -> $e
+		add label "a" from $d -> $c.entry
+		add label "a" from "A" -> $c.entry
+		add label "a" from $c.getText() -> $e
+		add label "a" from $d -> $c.entry
+end
+
+rule #5000
+	when
+		cell $c
+	then
+		set category $c -> $l
+		set category "A" -> $l
+		set category "A" -> $c.label
+		set category $c -> $c.label
+		set category $cat -> $c.label[1]
+		set category $cat -> $c.entry[2]
+end
+
+rule #6000
+	when
+		cell $c
+	then
+		set parent label $l1 -> $l2
+		set parent label $c1.label -> $c2.label
+		set parent label $l -> $c.label
+		set parent label $c.label -> $l
+		set parent label $c1.label[0] -> $c2.label[1]
+		set parent label $l -> $c.label[2]
+		set parent label $c.label[3] -> $l
+end
+
+rule #7000
+	when
+		cell $c
+	then
+		group $l1 -> $l2
+		group $c1.label -> $c2.label
+		group $l -> $c.label
+		group $c.label -> $l
+		group $c1.label[0] -> $c2.label[1]
+		group $l -> $c.label[2]
+		group $c.label[3] -> $l
+end
+
+rule #8000
+	when
+		cell $c
+	then
+		print $c
+end
+
+rule #9000
+	when
+		cell $c
+		cell $c : cl == 1, rt > 1
+		cell.label $c
+		cell.label $c : cl == 1
+		cell.label $c : cl == 1, $l : label
+		cell.label $c.$l
+		cell.label $c.$l : cl == 1
+		cell.label[1] $c.$l
+		cell.label[1] $c.$l : cl == 1
+		cell.entry $c
+		cell.entry $c : $e : entry
+		cell.entry $c.$e : ! blank
+		cell.entry $c.$e
+		cell.entry $c : rt > 1
+		cell.entry[2] $c.$e : ! blank
+		cell.entry[2] $c.$e
+		cell@entry $c : rt > 1
+		cell@entry $c : ! blank
+		cell@entry $c : ! blank, $e : entry
+		cell@clabel $c
+		cell@rlabel $c
+		cell@rlabel $c : $l : label
+	then
+		print $c
+end
+
+rule #10000
+	when
+		label $l
+		label $l : cell.( cl == 1, rt > 1 ), value == "a"
+		label $l : cell.( cl == 1, rt > 1 ), value == "a", $c : cell
+   	then
+		print $c
+end
+
+rule #11000
+	when
+		entry $e
+		entry $e : cell.( cl == 1, rt > 1 ), value == "1"
+		entry $e : cell.( cl == 1, rt > 1 ), value == "1", $c : cell
+   	then
+		print $c
+end
+
+rule #12000
+	when
+		category $d
+		category $d : "A"
+		category $d : name == "B"
+   	then
+		print $c
+end
+
+rule #13000
+	when
+		cell $c
+	then
+		split $c
+end
+
+rule #14000
+	when
+		cell $c
+	then
+		merge $c1 -> $c2
+end
+
+rule #15000
+	when
+		cell $c
+	then
+		set value "a new value" -> $c.label
+		set value "a new value" -> $c.entry
+		set value "a new value" -> $l
+		set value "a new value" -> $e
+		set text "new text" -> $c
+		set value "a new value" -> $c.label[1]
+		set value "a new value" -> $c.entry[0]
+end
+
+rule #16000
+	when
+		cell $c
+	then
+		update cell $c
+		update entry $e
+		update label $l
+		update $c
+		update $c.entry
+		update $c.label
+		update $c.entry[0]
+		update $c.label[1]
+
+end
+
+

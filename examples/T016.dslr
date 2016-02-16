@@ -1,0 +1,96 @@
+package ru.icc.cells.ssdc
+
+import ru.icc.cells.ssdc.model.*
+import ru.icc.cells.ssdc.model.style.*
+
+rule #1
+    when
+        cell $c : ! colored, rt != rb || cl != cr
+    then
+        split $c
+end
+
+rule #2 no-loop true
+    when
+        cell $c : ! colored
+    then
+        new entry $c
+        update $c
+end
+
+rule #3 lock-on-active
+    when
+        cell $c : rt > 1, hasColor( "#4f81bd" )
+    then
+        set mark @BLUE -> $c
+        new label $c
+        update $c
+end
+
+rule #4 lock-on-active
+    when
+        cell $c : rt > 1, hasColor( "#f79646" )
+    then
+        set mark @ORANGE -> $c
+        new label $c
+        update $c
+end
+
+rule #5 lock-on-active
+    when
+        cell $c : hasColor( "#9bbb59" )
+    then
+        set mark @GREEN -> $c
+        new label $c
+        update $c
+end
+
+rule #6
+    when
+        cell $c1 : rt == 1, $t : text
+        cell@BLUE $c2 : cl == $c1.cl, $l : label
+    then
+        set category $t -> $l
+end
+
+rule #7
+    when
+        cell $c1 : rt == 1, $t : text
+        cell@ORANGE $c2 : cl == $c1.cl, $l : label
+    then
+        set category $t -> $l
+end
+
+rule #8
+    when
+        cell@GREEN $c1
+        cell@GREEN $c2 : rt == $c1.rt
+    then
+        group $c1.label -> $c2.label
+end
+
+rule #9
+    when
+        cell@BLUE $c1
+        cell.entry $c2 : rt >= $c1.rt, rb <= $c1.rb, cl > $c1.cr
+        no cells@BLUE : cl > $c1.cr, cr < $c2.cl
+    then
+        add label $c1.label -> $c2.entry
+end
+
+rule #10
+    when
+        cell@ORANGE $c1
+        cell.entry $c2 : rt >= $c1.rt, rb <= $c1.rb, cl > $c1.cr
+        no cells@ORANGE : cl > $c1.cr, cr < $c2.cl
+    then
+        add label $c1.label -> $c2.entry
+end
+
+rule #11
+    when
+        cell@GREEN $c1
+        cell.entry $c2 : cl >= $c1.cl, cr <= $c1.cr
+    then
+        add label $c1.label -> $c2.entry
+end

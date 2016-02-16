@@ -1,0 +1,76 @@
+package ru.icc.cells.ssdc
+
+import ru.icc.cells.ssdc.model.*
+import ru.icc.cells.ssdc.model.style.*
+
+rule #1 lock-on-active
+    when
+        cell $corner : cl == 1, rt == 1, blank
+        cell $c : rb < $corner.rb, cl > $corner.cr, ! blank
+    then
+        set mark @Head -> $c
+        new label $c
+        update $c
+end
+
+rule #2 lock-on-active
+    when
+        cell $corner : cl == 1, rt == 1, blank
+        cell $c : rb == $corner.rb, cl > $corner.cr, ! blank
+    then
+        set mark @Unit -> $c
+        update $c
+end
+
+rule #3 lock-on-active
+    when
+        cell $corner : cl == 1, rt == 1, blank
+        cell $c : cr <= $corner.cr, rt > $corner.rb, ! blank
+    then
+        set mark @Stub -> $c
+        new label $c
+        update $c
+end
+
+rule #4 lock-on-active
+    when
+        cell $corner : cl == 1, rt == 1, blank
+        cell $c : cl > $corner.cr, rt > $corner.rb
+    then
+        set mark @Body -> $c
+        new entry $c
+        update $c
+end
+
+rule #5
+    when
+        cell@Head $c1
+        cell@Head $c2 : rt == $c1.rt, rb == $c1.rb
+    then
+        group $c1.label -> $c2.label
+end
+
+rule #6
+    when
+        cell@Stub $c1
+        cell@Stub $c2 : cl == $c1.cl, cr == $c1.cr
+    then
+        group $c1.label -> $c2.label
+end
+
+rule #7
+    when
+        cell@Unit $c1 : text == "thousands"
+        cell@Body $c2 : cl >= $c1.cl, cr <= $c1.cr , $e : entry, $v : entry.value
+    then
+        set value String.valueOf( Float.parseFloat( $v ) / 1000 ) -> $e
+end
+
+rule #8
+    when
+        cell.label $c1 
+        cell.entry $c2 : ( cl >= $c1.cl && cr <= $c1.cr ) || ( rt >= $c1.rt && rb <= $c1.rb )
+    then
+        add label $c1.label -> $c2.entry
+end
+

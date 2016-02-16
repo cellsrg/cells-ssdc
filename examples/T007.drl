@@ -1,0 +1,41 @@
+package ru.icc.cells.ssdc
+
+import ru.icc.cells.ssdc.model.*
+import ru.icc.cells.ssdc.model.style.*
+
+rule "#1" salience -1 no-loop true
+	when
+		$c : CCell( rt == 1 || cl == 1, !blank )
+	then
+		insert ( $c.newLabel() );
+		update ( $c );
+end
+
+rule "#2" salience -2 no-loop true
+	when
+		$c : CCell( rt > 1, cl > 1, $t : text )
+	then
+		for ( String s : $t.split( "," ) ) { insert ( $c.newEntry( s ) ); }
+end
+
+rule "#3" salience -3 no-loop true
+	when
+		$c : CCell( rt == 1, containsLabel(), $l : label )
+	then
+		$l.setCategory( "COL_LABELS" );
+end
+
+rule "#4" salience -4 no-loop true
+	when
+		$c : CCell( cl == 1, containsLabel(), $l : label )
+	then
+		$l.setCategory( "ROW_LABELS" );
+end
+
+rule "#5" salience -5 no-loop true
+	when
+		$l : CLabel( $c : cell  )
+		$e : CEntry( cell.( cl == $c.cl || rt == $c.rt ) )
+	then
+		$e.addLabel( $l );
+end

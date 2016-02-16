@@ -1,0 +1,36 @@
+package ru.icc.cells.ssdc
+
+import ru.icc.cells.ssdc.model.*
+import ru.icc.cells.ssdc.model.style.*
+
+rule #1 lock-on-active
+    when
+        cell $c : rt > 1, ( cl % 2 ) == 1
+    then
+        new label $c
+        update $c
+end
+
+rule #2 lock-on-active
+    when
+        cell $c : rt > 1, ( cl % 2 ) == 0
+    then
+        new entry $c
+        update $c
+end
+
+rule #3
+    when
+        cell $c : rt == 1, $t : text
+        label $l : cell.( cl == $c.cl )
+    then
+        set category $t -> $l
+end
+
+rule #5
+    when
+        label $l : $c : cell 
+        entry $e : cell.( rt == $c.rt, cl == $c.cl + 1 )
+    then
+        add label $l -> $e
+end

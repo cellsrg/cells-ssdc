@@ -1,0 +1,57 @@
+package ru.icc.cells.ssdc
+
+import ru.icc.cells.ssdc.model.*
+import ru.icc.cells.ssdc.model.style.*
+
+rule #1 lock-on-active
+    when
+        cell $c : rt == 1 || cl == 1, ! blank, $t : text
+    then
+        new label $t.replaceFirst( "\\p{IsCyrillic}", "" ) -> $c
+        new label $t.replaceFirst( "\\p{IsLatin}", "" ) -> $c
+        update $c
+end
+
+rule #2 lock-on-active
+    when
+        cell $c :  rt > 1, cl > 1
+    then
+        new entry $c
+        update $c
+end
+
+rule #3
+    when
+        cell.label[0] $c.$l : rt == 1
+    then
+        set category "LAT_COL_LABELS" -> $l
+end
+
+rule #4
+    when
+        cell.label[1] $c.$l : rt == 1
+    then
+        set category "CYR_COL_LABELS" -> $l
+end
+
+rule #5
+    when
+        cell.label[0] $c.$l : cl == 1
+    then
+        set category "LAT_ROW_LABELS" -> $l
+end
+
+rule #6
+    when
+        cell.label[1] $c.$l : cl == 1
+    then
+        set category "CYR_ROW_LABELS" -> $l
+end
+
+rule #7
+    when
+        label $l : $c : cell 
+        entry $e : cell.( cl == $c.cl || rt == $c.rt )
+    then
+        add label $l -> $e
+end

@@ -1,0 +1,51 @@
+package ru.icc.cells.ssdc
+
+import ru.icc.cells.ssdc.model.*
+import ru.icc.cells.ssdc.model.style.*
+
+rule #1 lock-on-active
+    when
+        cell $c : rt > 2, cl == 1, $t : text
+    then
+        new label $t.substring( 0, $t.indexOf( ' ' ) )  -> $c
+        new label $t.substring( $t.indexOf( ' ' ), $t.length() ) -> $c
+        update $c
+end
+
+rule #2 lock-on-active
+    when
+        cell $c : rt == 2, cl > 1
+    then
+        new label $c
+        update $c
+end
+
+rule #3 lock-on-active
+    when
+        cell $c : rt > 2, cl > 1
+    then
+        new entry $c
+        update $c
+end
+
+rule #4
+    when
+        cell.label[0] $c.$l : cl == 1
+    then
+        set category "First Name" -> $l
+end
+
+rule #5
+    when
+        cell.label[1] $c.$l : cl == 1
+    then
+        set category "Last Name" -> $l
+end
+
+rule #6
+    when
+        label $l : $c : cell 
+        entry $e : cell.rt == $c.rt || cell.cl == $c.cl
+    then
+        add label $l -> $e
+end

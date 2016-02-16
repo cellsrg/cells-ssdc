@@ -1,0 +1,104 @@
+package ru.icc.cells.ssdc
+
+import ru.icc.cells.ssdc.model.*
+import ru.icc.cells.ssdc.model.style.*
+
+rule #1 lock-on-active
+    when
+        cell $corner : cl == 1, rt == 1, blank
+        cell $c : rb <= $corner.rb, cl > $corner.cr, ! blank
+    then
+        set mark @top -> $c
+        new label $c
+        update $c
+end
+
+rule #2 lock-on-active
+    when
+        cell $corner : cl == 1, rt == 1, blank
+        cell $c : cr <= $corner.cr, rt > $corner.rb, ! blank
+    then
+        set mark @left -> $c
+        new label $c
+        update $c
+end
+
+rule #3 lock-on-active
+    when
+        cell $corner : cl == 1, onLastRow, blank
+        cell $c : rt >= $corner.rt, cl > $corner.cr, ! blank
+    then
+        set mark @bottom -> $c
+        new label $c
+        update $c
+end
+
+rule #4 lock-on-active
+    when
+        cell $corner : rt == 1, onLastCol, blank
+        cell $c : cl >= $corner.cl, rt > $corner.rb, ! blank
+    then
+        set mark @right -> $c
+        new label $c
+        update $c
+end
+
+rule #5 lock-on-active
+    when
+        cell $tlcorner : cl == 1, rt == 1, blank
+        cell $brcorner : onLastCol, onLastRow, blank
+        cell $c : cl > $tlcorner.cr, rt > $tlcorner.rb, cr < $brcorner.cl, rb < $brcorner.rt
+    then
+        set mark @entry -> $c
+        new entry $c
+        update $c
+end
+
+rule #6
+    when
+        cell@left $c1
+        cell@left $c2 : cl == $c1.cl, cr == $c1.cr
+    then
+        group $c1.label -> $c2.label
+end
+
+rule #7
+    when
+        cell@right $c1
+        cell@right $c2 : cl == $c1.cl, cr == $c1.cr
+    then
+        group $c1.label -> $c2.label
+end
+
+
+rule #8
+    when
+        cell@top $c1
+        cell@top $c2 : rt == $c1.rt, rb == $c1.rb
+    then
+        group $c1.label -> $c2.label
+end
+
+rule #9
+    when
+        cell@bottom $c1
+        cell@bottom $c2 : rt == $c1.rt, rb == $c1.rb
+    then
+        group $c1.label -> $c2.label
+end
+
+rule #10
+    when
+        label $l : cell.mark == "@left" || == "@right", $c : cell
+        entry $e : cell.( rt >= $c.rt, rb <= $c.rb )
+    then
+        add label $l -> $e
+end
+
+rule #11
+    when
+        label $l : cell.mark == "@top" || == "@bottom", $c : cell
+        entry $e : cell.( cl >= $c.cl, cr <= $c.cr )
+    then
+        add label $l -> $e
+end

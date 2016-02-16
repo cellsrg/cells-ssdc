@@ -1,0 +1,93 @@
+package ru.icc.cells.ssdc
+
+import ru.icc.cells.ssdc.model.*
+import ru.icc.cells.ssdc.model.style.*
+
+rule #1 lock-on-active
+    when
+        cell $corner : cl == 1, rt == 1, blank
+        cell $c : rb <= $corner.rb, cl > $corner.cr, ! blank
+    then
+        set mark @head -> $c
+        new label $c
+        update $c
+end
+
+rule #2 lock-on-active
+    when
+        cell $corner : cl == 1, rt == 1, blank
+        cell $c : cr <= $corner.cr, rt > $corner.rb, ! blank, cr <= $corner.cr
+    then
+        set mark @stub -> $c
+        new label $c
+        update $c
+end
+
+rule #3 lock-on-active
+    when
+        cell $c : singleOnRow, ! blank
+    then
+        set mark @cutin -> $c
+        new label $c
+        update $c
+end
+
+rule #4 lock-on-active
+    when
+        cell $corner : cl == 1, rt == 1, blank
+        cell $c : cl > $corner.cr, rt > $corner.rb
+    then
+        set mark @body -> $c
+        new entry $c
+        update $c
+end
+
+rule #5
+    when
+        cell@stub $c1
+        cell@stub $c2 : cl == $c1.cl, cr == $c1.cr
+    then
+        group $c1.label -> $c2.label
+end
+
+rule #6
+    when
+        cell@head $c1
+        cell@head $c2 : rt == $c1.rt, rb == $c1.rb
+    then
+        group $c1.label -> $c2.label
+end
+
+rule #7
+    when
+        cell@cutin $c
+    then
+        set category "CUT-IN HEADS" -> $c.label
+end
+
+rule #8
+    when
+        label $l : cell.mark == "@stub", $c : cell
+        entry $e : cell.( rt >= $c.rt, rb <= $c.rb )
+    then
+        add label $l -> $e
+end
+
+rule #9
+    when
+        label $l : cell.mark == "@head", $c : cell
+        entry $e : cell.( cl >= $c.cl, cr <= $c.cr ) 
+    then
+        add label $l -> $e
+end
+
+rule #10
+    when
+        label $l : cell.mark == "@cutin", $c1 : cell
+        entry $e : cell.( rt > $c1.rb ), $c2 : cell 
+        no labels : cell.mark == "@cutin", cell.rt > $c1.rb, cell.rb < $c2.rt
+    then
+        add label $l -> $e
+end
+
+

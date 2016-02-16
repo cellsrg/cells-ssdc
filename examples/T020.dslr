@@ -1,0 +1,42 @@
+package ru.icc.cells.ssdc
+
+import ru.icc.cells.ssdc.model.*
+import ru.icc.cells.ssdc.model.style.*
+
+rule #1 lock-on-active
+    when
+        cell $c : rt > 1, style.font.bold, $t : text
+    then
+        new label $t.replaceAll( "\\p{IsHan}", "" ) -> $c
+        new label $t.replaceAll( "\\p{IsLatin}", "" ) -> $c
+        update $c
+end
+
+rule #2 lock-on-active
+    when
+        cell $c : rt > 1, cl > 1, ! style.font.bold, $t : text
+    then
+        new entry $t.replaceAll( "\\p{IsHan}", "" ) -> $c
+        new entry $t.replaceAll( "\\p{IsDigit}", "" ) -> $c
+        update $c
+end
+
+rule #3
+    when
+        cell $c1 : rt == 1, $english : text.replaceAll( "\\p{IsHan}", "" ), $chinese : text.replaceAll( "\\p{IsLatin}", "" )
+        cell.label $c2 : cl >= $c1.cl, cr <= $c1.cr, $l1 : getLabel(0), $l2 : getLabel(1)
+    then
+        set category $english -> $l1
+        set category $chinese -> $l2
+end
+
+rule #4
+    when
+        cell.label $c1 
+        cell.entry $c2 : ( cl == $c1.cl && cr == $c1.cr ) || ( rt == $c1.rt && rb == $c1.rb )
+    then
+        add label $c1.label[0] -> $c2.entry[0]
+        add label $c1.label[1] -> $c2.entry[0]
+        add label $c1.label[0] -> $c2.entry[1]
+        add label $c1.label[1] -> $c2.entry[1]
+end

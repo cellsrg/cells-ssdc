@@ -1,0 +1,29 @@
+package ru.icc.cells.ssdc
+
+import ru.icc.cells.ssdc.model.*
+import ru.icc.cells.ssdc.model.style.*
+
+rule #1 no-loop true
+    when
+        cell $c : rt > 1, $t : text
+    then
+        new label $t.substring( 0, $t.indexOf( '=' ) - 1 ) -> $c
+        new entry $t.substring( $t.indexOf( '=' ) + 1, $t.length() ) -> $c
+        update $c
+end
+
+rule #2
+    when
+        label $l : $c : cell
+        entry $e : cell == $c
+    then
+        add label $l -> $e
+end
+
+rule #3
+    when
+        cell $c : rt == 1, $t : text
+        label $l : cell.( cl == $c.cl, cr == $c.cr )
+    then
+        set category $t -> $l
+end

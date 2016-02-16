@@ -1,0 +1,45 @@
+package ru.icc.cells.ssdc
+
+import ru.icc.cells.ssdc.model.*
+import ru.icc.cells.ssdc.model.style.*
+
+rule #1 lock-on-active
+    when
+        cell $c : cl == 1, rt > 1
+    then
+        set mark @rlabel -> $c
+        new label $c
+        update $c
+end
+
+rule #2 lock-on-active
+    when
+        cell $c : rt == 1, cl > 0
+    then
+        new label $c
+        update $c
+end
+
+rule #3 lock-on-active
+    when
+        cell $c :  rt > 1, cl > 1, ! blank
+    then
+        new entry $c
+        update $c
+end
+
+rule #4
+    when
+        cell@rlabel $c1
+        cell@rlabel $c2 : indent == $c1.indent
+    then
+        group $c1.label -> $c2.label
+end
+
+rule #5
+    when
+        label $l : $c : cell 
+        entry $e : cell.( cl == $c.cl || rt == $c.rt )
+    then
+        add label $l -> $e
+end

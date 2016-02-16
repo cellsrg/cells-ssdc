@@ -1,0 +1,82 @@
+package ru.icc.cells.ssdc
+
+import ru.icc.cells.ssdc.model.*
+import ru.icc.cells.ssdc.model.style.*
+
+rule #1
+    when
+        cell $corner : cl == 1, rt == 1, blank
+        cell $c : rb <= $corner.rb, cl > $corner.cr, ! blank, ! marked
+    then
+        set mark @clabel -> $c
+        new label $c
+        update $c
+end
+
+rule #2
+    when
+        cell $corner : cl == 1, rt == 1, blank
+        cell $c : cr <= $corner.cr, rt > $corner.rb, ! blank, ! marked
+    then
+        set mark @rlabel -> $c
+        new label $c
+        update $c
+end
+
+rule #3
+    when
+        cell $corner : cl == 1, rt == 1, blank
+        cell $c : cl > $corner.cr, rt > $corner.rb, ! marked
+    then
+        set mark @entry -> $c
+        new entry $c
+        update $c
+end
+
+rule #4 no-loop true
+    when
+        cell@clabel $c1
+        cell@clabel $c2 : rt == $c1.rt + 1, cl >= $c1.cl, cr <= $c1.cr
+    then
+        set parent label $c1.label -> $c2.label
+        update $c1
+end
+
+rule #5 no-loop true
+    when
+        cell@rlabel $c1
+        cell@rlabel $c2 : cl == $c1.cl + 1, rt >= $c1.rt, rb <= $c1.rb
+    then
+        set parent label $c1.label -> $c2.label
+        update $c1
+end
+
+rule #6
+    when
+        cell@clabel $c
+    then
+        set category "COL_LABELS" -> $c.label
+end
+
+rule #7
+    when
+        cell@rlabel $c
+    then
+        set category "ROW_LABELS" -> $c.label
+end
+
+rule #8
+    when
+        cell@clabel $c1 : label.isTerminal()
+        cell@entry $c2 : cl >= $c1.cl, cr <= $c1.cr
+    then
+        add label $c1.label -> $c2.entry
+end
+
+rule #9
+    when
+        cell@rlabel $c1 : label.isTerminal()
+        cell@entry $c2 : rt >= $c1.rt, rb <= $c1.rb
+    then
+        add label $c1.label -> $c2.entry
+end
