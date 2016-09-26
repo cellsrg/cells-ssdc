@@ -25,6 +25,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -40,11 +41,21 @@ public final class CanonicalForm
         this.header = header;
     }
 
+    public String[] getHeader()
+    {
+        return header;
+    }
+
     private List<String[]> records = new ArrayList<String[]>();
 
     public void addRecord( String[] record )
     {
         this.records.add( record );
+    }
+
+    public List<String[]> getRecords()
+    {
+        return records;
     }
 
     public void print()

@@ -28,5 +28,8 @@
         <module name="ssdc" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel target="1.8">
+      <module name="ssdc" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

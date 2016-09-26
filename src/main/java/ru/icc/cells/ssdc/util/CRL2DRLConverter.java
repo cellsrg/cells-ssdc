@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package ru.icc.cells.ssdc;
+package ru.icc.cells.ssdc.util;
 
 import java.io.File;
 import java.io.FileReader;

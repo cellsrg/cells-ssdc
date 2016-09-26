@@ -55,4 +55,5 @@ public abstract class CValue extends COwned
         setCell( cell );
         setValue( value );
     }
+
 }

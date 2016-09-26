@@ -111,9 +111,17 @@ public final class CEntry extends CValue
 
     public String trace()
     {
+        final String separator = "; ";
         final StringBuilder sb = new StringBuilder();
-        sb.append('"').append(getValue()).append('"').append(" [");
 
+        String s1 = String.format("entry=\"%s\"", getValue());
+        sb.append(s1).append(separator);
+
+        CCell c = this.getCell();
+        String s2 = String.format("address=%s", c.address());
+        sb.append(s2).append(separator);
+
+        sb.append("labels={");
         Iterator<CLabel> labels = this.labels.values().iterator();
         while ( labels.hasNext() )
         {
@@ -122,7 +130,7 @@ public final class CEntry extends CValue
             if ( labels.hasNext() )
                 sb.append(", ");
         }
-        sb.append("]");
+        sb.append("}");
 
         return sb.toString();
     }

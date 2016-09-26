@@ -194,22 +194,29 @@ public final class CLabel extends CValue
 
     public String trace()
     {
+        final String separator = "; ";
         final StringBuilder sb = new StringBuilder();
         final String nil = "null";
 
-        sb.append('"').append(getValue()).append('"').append(" [parent=<");
+        String s1 = String.format("label=\"%s\"", getValue());
+        sb.append(s1).append(separator);
 
+        CCell c = this.getCell();
+        String s2 = String.format("address=%s", c.address());
+        sb.append(s2).append(separator);
+
+        sb.append("parent=");
         if ( null == parent )
             sb.append( nil );
         else
-            sb.append( parent.getValue() );
-        sb.append(">, category=<");
+            sb.append('"').append(parent.getValue()).append('"');
+        sb.append(separator);
 
+        sb.append("category=");
         if ( null == category )
             sb.append( nil );
         else
-            sb.append( category.getName() );
-        sb.append(">]");
+            sb.append('"').append(category.getName()).append('"');
 
         return sb.toString();
     }

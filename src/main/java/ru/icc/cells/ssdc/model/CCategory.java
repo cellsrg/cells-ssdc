@@ -127,8 +127,13 @@ public final class CCategory extends COwned implements Cloneable
 
     public String trace()
     {
+        final String separator = "; ";
         StringBuilder sb = new StringBuilder();
 
+        String s1 = String.format("category=\"%s\"", getName());
+        sb.append(s1).append(separator);
+
+        sb.append("labels={");
         int i = 0;
         Iterator<CLabel> labels = this.labels.iterator();
         while ( labels.hasNext() )
@@ -142,7 +147,8 @@ public final class CCategory extends COwned implements Cloneable
                 i++;
             }
         }
-        return String.format( "%s [%s]", getName(), sb );
+        sb.append("}");
+        return sb.toString();
     }
 
     @Override

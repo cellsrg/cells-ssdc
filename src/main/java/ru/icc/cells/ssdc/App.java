@@ -37,6 +37,7 @@ import org.kie.internal.definition.KnowledgePackage;
 import org.kie.internal.io.ResourceFactory;
 import org.kie.internal.runtime.StatefulKnowledgeSession;
 import ru.icc.cells.ssdc.model.*;
+import ru.icc.cells.ssdc.writers.*;
 
 /**
  * Created by Alexey Shigarov (shigarov@gmail.com) on 01.02.2015.
@@ -49,6 +50,8 @@ public final class App
     private static List<Integer> sheetIndexes;
     private static File drlFile;
     private static Path catDirectory;
+    private static boolean withoutSuperscript;
+    private static boolean useCellValue;
     private static Path outputDirectory;
     private static boolean debuggingMode;
     private static boolean useCellsRuleLang;
@@ -213,6 +216,24 @@ public final class App
         return null;
     }
 
+    private static boolean parseWithoutSuperscriptParam(String withoutSuperscriptParam)
+    {
+        if ( null != withoutSuperscriptParam )
+        {
+            return Boolean.valueOf( withoutSuperscriptParam );
+        }
+        return false;
+    }
+
+    private static boolean parseUseCellValueParam(String useCellValueParam)
+    {
+        if ( null != useCellValueParam )
+        {
+            return Boolean.valueOf( useCellValueParam );
+        }
+        return false;
+    }
+
     private static boolean parseDebuggingModeParam( String debuggingModeParam )
     {
         if ( null != debuggingModeParam )
@@ -252,10 +273,13 @@ public final class App
             sb.append( indent ).append( String.format( "DRL file: \"%s\"%n", drlFile.getCanonicalPath() ) );
             if ( null != catDirectory )
                 sb.append( indent ).append( String.format( "Category directory: \"%s\"%n", catDirectory.toRealPath() ) );
-            sb.append( indent ).append( String.format( "Output directory: \"%s\"%n", outputDirectory.toRealPath() ) );
 
-            if ( debuggingMode ) sb.append( indent ).append( String.format( "Debugging mode: activated" ) );
-            else sb.append( indent ).append( String.format( "Debugging mode: deactivated" ) );
+            sb.append(indent).append(String.format("Ignoring superscript text: %b%n", withoutSuperscript));
+            sb.append(indent).append(String.format("Using cell values as text: %b%n", useCellValue));
+
+            sb.append(indent).append(String.format("Output directory: \"%s\"%n", outputDirectory.toRealPath()));
+
+            sb.append(indent).append(String.format("Debugging mode: %b", debuggingMode));
         }
         catch ( IOException e )
         {
@@ -269,6 +293,8 @@ public final class App
 	 * - input marked excel *.xlsx file [ inputFile ]
 	 * - sheet indexes [ -s 0-2, 4,5, 7-10 ]
 	 * - rule file *.drl file [ -k drlFile ]
+	 * - to ignore superscript text in cells [ -ss true ]
+	 * - to use cell values as text [-v true ]
 	 * - output directory [ -o outputDirectory ]
 	 * - debugging mode [ -m true ]
 	 * - domain file [ -d domainFile ]
@@ -303,6 +329,18 @@ public final class App
                 .withDescription( "directory with *.cat files" )
                 .create( "c" );
 
+        Option withoutSuperscriptOpt = OptionBuilder
+                .withArgName( "true|false" )
+                .hasArg()
+                .withDescription( "use true to ignore superscript text in cells" )
+                .create( "ss" );
+
+        Option useCellValueOpt = OptionBuilder
+                .withArgName( "true|false" )
+                .hasArg()
+                .withDescription( "use true to use cell values as text" )
+                .create( "v" );
+
         Option outputDirectoryOpt = OptionBuilder
                 .withArgName( "output directory" )
                 .hasArg()
@@ -321,6 +359,8 @@ public final class App
         options.addOption( sheetIndexesOpt );
         options.addOption( drlFileOpt );
         options.addOption( catDirectoryOpt );
+        options.addOption( withoutSuperscriptOpt );
+        options.addOption( useCellValueOpt );
         options.addOption( outputDirectoryOpt );
         options.addOption( debuggingModeOpt );
 
@@ -341,6 +381,12 @@ public final class App
 
             String catDirectoryParam = cmd.getOptionValue( catDirectoryOpt.getOpt() );
             catDirectory = parseCatDirectoryParam( catDirectoryParam );
+
+            String withoutSuperscriptParam = cmd.getOptionValue(withoutSuperscriptOpt.getOpt());
+            withoutSuperscript = parseWithoutSuperscriptParam(withoutSuperscriptParam);
+
+            String useCellValuParam = cmd.getOptionValue(useCellValueOpt.getOpt());
+            useCellValue = parseUseCellValueParam(useCellValuParam);
 
             String outputDirectoryParam = cmd.getOptionValue( outputDirectoryOpt.getOpt() );
             outputDirectory = parseOutputDirectoryParam( outputDirectoryParam );
@@ -436,6 +482,8 @@ public final class App
             loadWorkbook();
             loadRules();
             loadCatFiles();
+            DATA_LOADER.setWithoutSuperscript(withoutSuperscript);
+            DATA_LOADER.setUseCellValue(useCellValue);
 
             int count = 0;
 
@@ -477,9 +525,13 @@ public final class App
 
                     String fileName = FilenameUtils.removeExtension( inputExcelFile.getName() );
 
-                    String outFileName = String.format("%s\\%s_%s_%s.xlsx", outputDirectory, fileName, sheetNo, tableNo);
+                    //String outFileName = String.format("%s\\%s_%s_%s.xlsx", outputDirectory, fileName, sheetNo, tableNo);
+
+                    String outFileName = String.format("%s\\%s.xlsx", outputDirectory, sheetName);
                     //System.out.println(outFileName);
-                    canonicalForm.writeToExcel(new File(outFileName));
+                    //canonicalForm.writeToExcel(new File(outFileName));
+                    EvaluationExcelWriter writer = new EvaluationExcelWriter(new File(outFileName));
+                    writer.write(table);
 
                     tableNo++;
                 }

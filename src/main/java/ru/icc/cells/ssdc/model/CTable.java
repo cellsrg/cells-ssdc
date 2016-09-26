@@ -18,8 +18,9 @@ package ru.icc.cells.ssdc.model;
 
 import java.io.*;
 import java.util.*;
+
 import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.ss.util.*;
+import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.*;
 
 /**
@@ -399,5 +400,45 @@ public final class CTable
                 label.setCategory(category);
             }
         }
+    }
+
+    private File srcWorkbookFile;
+
+    public File getSrcWorkbookFile() {
+        return srcWorkbookFile;
+    }
+
+    public void setSrcWorkbookFile(File srcWorkbookFile) {
+        this.srcWorkbookFile = srcWorkbookFile;
+    }
+
+    private String srcSheetName;
+
+    public String getSrcSheetName() {
+        return srcSheetName;
+    }
+
+    public void setSrcSheetName(String srcSheetName) {
+        this.srcSheetName = srcSheetName;
+    }
+
+    private String srcStartCellRef;
+
+    public String getSrcStartCellRef() {
+        return srcStartCellRef;
+    }
+
+    public void setSrcStartCellRef(String srcStartCellRef) {
+        this.srcStartCellRef = srcStartCellRef;
+    }
+
+    private String srcEndCellRef;
+
+    public String getSrcEndCellRef() {
+        return srcEndCellRef;
+    }
+
+    public void setSrcEndCellRef(String srcEndCellRef) {
+        this.srcEndCellRef = srcEndCellRef;
     }
 }

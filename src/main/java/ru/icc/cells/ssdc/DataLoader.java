@@ -20,6 +20,7 @@ import java.io.*;
 
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
+import org.apache.poi.ss.util.CellReference;
 import org.apache.poi.xssf.usermodel.*;
 import ru.icc.cells.ssdc.model.*;
 import ru.icc.cells.ssdc.model.style.*;
@@ -30,6 +31,7 @@ import ru.icc.cells.ssdc.model.style.*;
 
 public final class DataLoader
 {
+    private File sourceWorkbookFile;
     private Workbook workbook;
     private Sheet sheet;
     private String sheetName;
@@ -38,14 +40,35 @@ public final class DataLoader
 
     private static final String REF_POINT_VAL = "$START";
     private static final String END_POINT_VAL = "$END";
-    private static final String TBL_NAME      = "$NAME";
-    private static final String TBL_MEASURE   = "$MEASURE";
+    //private static final String TBL_NAME      = "$NAME";
+    //private static final String TBL_MEASURE   = "$MEASURE";
+
+    private boolean withoutSuperscript;
+
+    public boolean isWithoutSuperscript() {
+        return withoutSuperscript;
+    }
+
+    public void setWithoutSuperscript(boolean withoutSuperscript) {
+        this.withoutSuperscript = withoutSuperscript;
+    }
+
+    private boolean useCellValue;
+
+    public boolean isUseCellValue() {
+        return useCellValue;
+    }
+
+    public void setUseCellValue(boolean useCellValue) {
+        this.useCellValue = useCellValue;
+    }
 
     public void loadWorkbook( File excelFile ) throws IOException
     {
         FileInputStream fin = new FileInputStream( excelFile );
         workbook = new XSSFWorkbook( fin );
         formulaEvaluator = new XSSFFormulaEvaluator( (XSSFWorkbook) workbook );
+        sourceWorkbookFile = excelFile;
     }
 
     private void reset()
@@ -82,7 +105,7 @@ public final class DataLoader
         CPoint refPnt = findRefPoint( sheet, rowIndex );
         if ( null == refPnt ) return null;
 
-        CPoint endPnt = findEndPoint( sheet, refPnt.r);
+        CPoint endPnt = findEndPoint( sheet, refPnt.r );
         if ( null == endPnt ) return null;
 
         int numOfCols = endPnt.c - refPnt.c + 1;
@@ -111,20 +134,11 @@ public final class DataLoader
             for ( int j = refColAdr; j <= endColAdr; j ++ )
             {
                 // TODO надо внимательнее разобраться со случаем, когда excelCell == null
-                //excelCell = r.getCell( j );
                 excelCell = row.getCell( j, Row.CREATE_NULL_AS_BLANK );
-
-                //cell = new CCell();
-                //cell = table.newCell();
 
                 int colAdr = excelCell.getColumnIndex() - refColAdr + 1;
                 int rowAdr = excelCell.getRowIndex() - refRowAdr + 1;
                 
-                //cell.setCl( colAdr );
-                //cell.setRt( rowAdr );
-                //cell.setCr( colAdr );
-                //cell.setRb( rowAdr );
-
                 int cl = colAdr;
                 int cr = colAdr;
                 int rt = rowAdr;
@@ -138,8 +152,6 @@ public final class DataLoader
                     if ( cellRangeAddress.getFirstColumn() == excelCell.getColumnIndex()
                             && cellRangeAddress.getFirstRow() == excelCell.getRowIndex() )
                     {
-                        //cell.setCr( cellRangeAddress.getLastColumn() - refColAdr + 1 );
-                        //cell.setRb( cellRangeAddress.getLastRow() - refRowAdr + 1 );
                         cr = cellRangeAddress.getLastColumn() - refColAdr + 1;
                         rb = cellRangeAddress.getLastRow() - refRowAdr + 1;
                         break;
@@ -163,7 +175,6 @@ public final class DataLoader
                     cell.setRb( rb );
 
                     fillCell( cell, excelCell );
-                    //table.addCell( cell );
                 }
             }
         }
@@ -171,7 +182,7 @@ public final class DataLoader
         this.rowIndex = endPnt.r + 1;
 
         // Обработка контекста таблицы
-        //table.setContext(new CTableContext() );
+        /*
         CPoint namePnt = this.findPreviousPoint( this.sheet, TBL_NAME, refPnt.r - 1 );
         if ( null != namePnt )
         {
@@ -191,6 +202,16 @@ public final class DataLoader
             String measure = extractCellValue( excelCell );
             //table.getContext().setMeasure( measure );
         }
+        */
+
+        table.setSrcWorkbookFile(sourceWorkbookFile);
+        table.setSrcSheetName(sheet.getSheetName());
+
+        CellReference cellRef;
+        cellRef = new CellReference(refPnt.r, refPnt.c);
+        table.setSrcStartCellRef(cellRef.formatAsString());
+        cellRef = new CellReference(endPnt.r, endPnt.c);
+        table.setSrcEndCellRef(cellRef.formatAsString());
 
         return table;
     }
@@ -204,7 +225,8 @@ public final class DataLoader
 
             for ( Cell cell : row )
             {
-                if ( tag.equals( extractCellValue( cell ) ) )
+                String text = getFormatCellValue(cell);
+                if (tag.equals(text))
                     return new CPoint( cell.getColumnIndex(), cell.getRowIndex() );
             }
         }
@@ -220,11 +242,18 @@ public final class DataLoader
 
             for ( Cell cell : row )
             {
-                if ( tag.equals( extractCellValue( cell ) ) )
+                String text = getFormatCellValue(cell);
+                if (tag.equals(text))
                     return new CPoint( cell.getColumnIndex(), cell.getRowIndex() );
             }
         }
         return null;
+    }
+
+    private String getFormatCellValue(Cell excelCell)
+    {
+        formulaEvaluator.evaluate(excelCell);
+        return formatter.formatCellValue(excelCell, formulaEvaluator);
     }
 
     private CPoint findRefPoint( Sheet sheet, int startRow )
@@ -313,10 +342,12 @@ public final class DataLoader
     private DataFormatter formatter = new DataFormatter();
     private FormulaEvaluator formulaEvaluator;
 
-    private void testSuperScript( Cell excelCell, RichTextString richTextString )
+    private boolean hasSuperscriptText(Cell excelCell)
     {
-        if ( null == richTextString ) return;
-        //System.out.println( "RichTextString = \"" + richTextString.getString() + "\"" );
+        if (excelCell.getCellType() != Cell.CELL_TYPE_STRING) return false;
+
+        RichTextString richTextString = excelCell.getRichStringCellValue();
+        if ( null == richTextString ) return false;
 
         int index = 0;
         int length = 0;
@@ -328,6 +359,7 @@ public final class DataLoader
         XSSFCellStyle style = ( ( XSSFCell ) excelCell ).getCellStyle();
         font = style.getFont();
 
+        String richText = rts.getString();
         if ( rts.numFormattingRuns() > 1 )
         {
             for ( int i = 0; i < rts.numFormattingRuns(); i++ )
@@ -345,31 +377,89 @@ public final class DataLoader
                     font.setTypeOffset(XSSFFont.SS_NONE);
                 }
 
-                System.out.println( "Substring [" + rts.toString().substring( index, index + length ) + "]" );
+                String s = richText.substring(index, index + length);
 
                 if ( font.getTypeOffset() == XSSFFont.SS_SUPER )
-                {
-                    System.out.println( "\t\tSuperscripted" );
-                }
-                else
-                {
-                    System.out.println( "\t\tNOT Superscripted" );
-                }
+                    return true;
             }
         }
         else
         {
-            System.out.print( "String [" + rts.toString() );
             if ( font.getTypeOffset() == XSSFFont.SS_SUPER )
-            {
-                System.out.print("] is ");
-            }
-            else
-            {
-                System.out.print("] is not ");
-            }
-            System.out.println("superscripted");
+                return true;
         }
+        return false;
+    }
+
+    private String getNotSuperscriptText(Cell excelCell)
+    {
+        if (excelCell.getCellType() != Cell.CELL_TYPE_STRING) return null;
+        RichTextString richTextString = excelCell.getRichStringCellValue();
+        if ( null == richTextString ) return null;
+
+        int index;
+        int length;
+        String text;
+
+        XSSFRichTextString rts = ( XSSFRichTextString ) richTextString;
+        XSSFWorkbook wb = ( XSSFWorkbook ) workbook;
+
+        XSSFCellStyle style = ( ( XSSFCell ) excelCell ).getCellStyle();
+        XSSFFont font = style.getFont();
+
+        String richText = rts.getString();
+        StringBuilder notSuperscriptRuns = new StringBuilder();
+        if ( rts.numFormattingRuns() > 1 )
+        {
+            boolean wasNotSuperscriptRun = false;
+            for ( int i = 0; i < rts.numFormattingRuns(); i++ )
+            {
+                index = rts.getIndexOfFormattingRun( i );
+                length = rts.getLengthOfFormattingRun( i );
+
+                try
+                {
+                    font = rts.getFontOfFormattingRun(i);
+                }
+                catch( NullPointerException e )
+                {
+                    font = wb.getFontAt(XSSFFont.DEFAULT_CHARSET);
+                    font.setTypeOffset(XSSFFont.SS_NONE);
+                }
+
+                String s = richText.substring(index, index + length);
+
+                if ( font.getTypeOffset() == XSSFFont.SS_SUPER )
+                {
+                    if (wasNotSuperscriptRun) notSuperscriptRuns.append(" ");
+                    wasNotSuperscriptRun = false;
+                }
+                else
+                {
+                    notSuperscriptRuns.append(s);
+                    wasNotSuperscriptRun = true;
+                }
+            }
+            text = notSuperscriptRuns.toString();
+        }
+        else
+        {
+            if ( font.getTypeOffset() == XSSFFont.SS_SUPER )
+                text = null;
+            else
+                text = richText;
+        }
+        return text;
+    }
+
+    private String getText(Cell excelCell)
+    {
+        String text = null;
+        if (useCellValue)
+            text = extractCellValue(excelCell);
+        else
+            text = getFormatCellValue(excelCell);
+        return text;
     }
 
     private void fillCell( CCell cell, Cell excelCell )
@@ -377,8 +467,20 @@ public final class DataLoader
         String rawTextualContent = null;
         CellType cellType = null;
 
-        formulaEvaluator.evaluate( excelCell );
-        rawTextualContent = formatter.formatCellValue( excelCell, formulaEvaluator );
+        String text = null;
+        if (withoutSuperscript) {
+            if (hasSuperscriptText(excelCell)) {
+                text = getNotSuperscriptText(excelCell);
+            } else {
+                text = getText(excelCell);
+            }
+        } else {
+            text = getText(excelCell);
+        }
+        cell.setText(text);
+
+        rawTextualContent = getFormatCellValue(excelCell);
+        cell.setRawText(rawTextualContent);
 
         switch ( excelCell.getCellType() )
         {
@@ -388,25 +490,19 @@ public final class DataLoader
                     //rawTextualContent = "DATE"; // TODO Какое-то странное значение
                     cellType = CellType.DATE;
                 } else {
-                    //rawTextualContent = Double.toString( excelCell.getNumericCellValue() );
                     cellType = CellType.NUMERIC;
                 }
                 break;
 
             case Cell.CELL_TYPE_STRING :
-                //rawTextualContent = excelCell.getRichStringCellValue().getString();
-                //RichTextString rts = excelCell.getRichStringCellValue();
-                //testSuperScript( excelCell, rts );
                 cellType = CellType.STRING;
                 break;
 
             case Cell.CELL_TYPE_BOOLEAN :
-                //rawTextualContent = Boolean.toString( excelCell.getBooleanCellValue() );
                 cellType = CellType.BOOLEAN;
                 break;
 
             case Cell.CELL_TYPE_FORMULA :
-                //rawTextualContent = extractCellFormulaValue( excelCell );
                 cellType = CellType.FORMULA;
                 break;
 
@@ -421,10 +517,6 @@ public final class DataLoader
 
         cell.setId(this.cellCount);
 
-        cell.setRawText(rawTextualContent);
-        //String textualContent = CCell.getPlainText( rawTextualContent );
-        cell.setText(rawTextualContent);
-
         cell.setCellType(cellType);
 
         int height = excelCell.getRow().getHeight();
@@ -436,6 +528,9 @@ public final class DataLoader
         CellStyle excelCellStyle = excelCell.getCellStyle();
         CStyle cellStyle = cell.getStyle();
         fillCellStyle( cellStyle, excelCellStyle );
+
+        String reference = new CellReference(excelCell).formatAsString();
+        cell.setProvenance(reference);
 
         this.cellCount ++;
     }

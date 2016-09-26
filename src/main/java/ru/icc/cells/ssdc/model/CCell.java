@@ -503,4 +503,20 @@ public final class CCell extends COwned implements Cloneable
         return String.format( "%s%n%s%n", text, style.trace() );
     }
 
+    private String provenance;
+
+    public void setProvenance(String provenance)
+    {
+        this.provenance = provenance;
+    }
+
+    public String getProvenance()
+    {
+        return this.provenance;
+    }
+
+    public String address()
+    {
+        return String.format("L%dT%dR%dB%d", getCl(), getRt(), getCr(), getRb());
+    }
 }

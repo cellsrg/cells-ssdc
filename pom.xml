@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ru.icc.cells</groupId>
-    <artifactId>csstai</artifactId>
+    <artifactId>ssdc</artifactId>
     <version>0.1</version>
 
     <repositories>
