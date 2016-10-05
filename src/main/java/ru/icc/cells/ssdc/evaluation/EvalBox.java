@@ -192,6 +192,28 @@ public class EvalBox {
         return sb.toString();
     }
 
+    public boolean hasErrors(){
+        return entryEval.hasErrors() || labelEval.hasErrors() || elPairEval.hasErrors() || llPairEval.hasErrors();
+    }
+
+    public int totalFalseNegatives() {
+        int total = 0;
+        total += entryEval.numOfFalseNegatives();
+        total += labelEval.numOfFalseNegatives();
+        total += elPairEval.numOfFalseNegatives();
+        total += llPairEval.numOfFalseNegatives();
+        return total;
+    }
+
+    public int totalFalsePositives() {
+        int total = 0;
+        total += entryEval.numOfFalsePositives();
+        total += labelEval.numOfFalsePositives();
+        total += elPairEval.numOfFalsePositives();
+        total += llPairEval.numOfFalsePositives();
+        return total;
+    }
+
     static class Eval {
         private CodeType codeType;
 
@@ -227,11 +249,11 @@ public class EvalBox {
             return resultCodes.size();
         }
 
-        public float recall() {
+        float recall() {
             return (float) numOfCorrectCases() / (float) numOfAllCasesInGroundTruth();
         }
 
-        public float precision() {
+        float precision() {
             return (float) numOfCorrectCases() / (float) numOfAllCasesInResult();
         }
 
@@ -265,19 +287,31 @@ public class EvalBox {
             return sb.toString();
         }
 
+        private int numOfFalsePositives(){
+            return numOfAllCasesInResult() - numOfCorrectCases();
+        }
+
+        private int numOfFalseNegatives(){
+            return numOfAllCasesInGroundTruth() - numOfCorrectCases();
+        }
+
+        private boolean hasErrors(){
+            return numOfFalsePositives() + numOfFalseNegatives() > 0 ? true : false;
+        }
+
         private String traceErrors() {
             final StringBuffer sb = new StringBuffer();
 
-            final String template1 = "%nground-truth %s missing in the result:%n";
+            final String template1 = "%nFalse negatives in the %s (total %d): %n";
             if (missingGroundTruthCodes.size() > 0) {
-                sb.append(String.format(template1, codeTypeAsString()));
+                sb.append(String.format(template1, codeTypeAsString(), numOfFalseNegatives()));
                 String s = traceMissingCodes(missingGroundTruthCodes.iterator());
                 sb.append(s);
             }
 
-            final String template2 = "%nresult %s missing in the ground-truth:%n";
+            final String template2 = "%nFalse positives in the %s (total %d):%n";
             if (missingResultCodes.size() > 0) {
-                sb.append(String.format(template2, codeTypeAsString()));
+                sb.append(String.format(template2, codeTypeAsString(), numOfFalsePositives()));
                 String s = traceMissingCodes(missingResultCodes.iterator());
                 sb.append(s);
             }

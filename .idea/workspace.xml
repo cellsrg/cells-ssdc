@@ -10,46 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd205834-186b-4579-a8ce-57887b58dd57" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/ru/icc/cells/ssdc/evaluation/EvalBox.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/ru/icc/cells/ssdc/evaluation/EvalView.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/artifacts/csstai_jar.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/artifacts/sdet.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/artifacts/ssdet.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/ru/icc/cells/ssdc/CRL2DRLConverter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/ru/icc/cells/ssdc/CRL2DRLConverter.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/examples/results/T001/T001_0_0.xlsx" afterPath="$PROJECT_DIR$/examples/results/T001/T001_0_0.xlsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/examples/results/T001/T001_0_1.xlsx" afterPath="$PROJECT_DIR$/examples/results/T001/T001_0_1.xlsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/examples/results/T001/T001_0_2.xlsx" afterPath="$PROJECT_DIR$/examples/results/T001/T001_0_2.xlsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/examples/results/T001/T001_0_3.xlsx" afterPath="$PROJECT_DIR$/examples/results/T001/T001_0_3.xlsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/examples/results/T002a/T002_0_0.xlsx" afterPath="$PROJECT_DIR$/examples/results/T002a/T002_0_0.xlsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/examples/results/T002a/T002_0_1.xlsx" afterPath="$PROJECT_DIR$/examples/results/T002a/T002_0_1.xlsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/examples/results/T002a/T002_0_2.xlsx" afterPath="$PROJECT_DIR$/examples/results/T002a/T002_0_2.xlsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/examples/results/T011/T011_0_0.xlsx" afterPath="$PROJECT_DIR$/examples/results/T011/T011_0_0.xlsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/examples/results/T011/T011_0_1.xlsx" afterPath="$PROJECT_DIR$/examples/results/T011/T011_0_1.xlsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ru/icc/cells/ssdc/App.class" afterPath="$PROJECT_DIR$/target/classes/ru/icc/cells/ssdc/App.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ru/icc/cells/ssdc/DataLoader$CPoint.class" afterPath="$PROJECT_DIR$/target/classes/ru/icc/cells/ssdc/DataLoader$CPoint.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ru/icc/cells/ssdc/DataLoader.class" afterPath="$PROJECT_DIR$/target/classes/ru/icc/cells/ssdc/DataLoader.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ru/icc/cells/ssdc/model/CCategory.class" afterPath="$PROJECT_DIR$/target/classes/ru/icc/cells/ssdc/model/CCategory.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ru/icc/cells/ssdc/model/CCell.class" afterPath="$PROJECT_DIR$/target/classes/ru/icc/cells/ssdc/model/CCell.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ru/icc/cells/ssdc/model/CEntry.class" afterPath="$PROJECT_DIR$/target/classes/ru/icc/cells/ssdc/model/CEntry.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ru/icc/cells/ssdc/model/CLabel.class" afterPath="$PROJECT_DIR$/target/classes/ru/icc/cells/ssdc/model/CLabel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ru/icc/cells/ssdc/model/CTable.class" afterPath="$PROJECT_DIR$/target/classes/ru/icc/cells/ssdc/model/CTable.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ru/icc/cells/ssdc/model/CanonicalForm.class" afterPath="$PROJECT_DIR$/target/classes/ru/icc/cells/ssdc/model/CanonicalForm.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/icc/cells/ssdc/App.java" afterPath="$PROJECT_DIR$/src/main/java/ru/icc/cells/ssdc/App.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/icc/cells/ssdc/DataLoader.java" afterPath="$PROJECT_DIR$/src/main/java/ru/icc/cells/ssdc/DataLoader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/icc/cells/ssdc/model/CCategory.java" afterPath="$PROJECT_DIR$/src/main/java/ru/icc/cells/ssdc/model/CCategory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/icc/cells/ssdc/model/CCell.java" afterPath="$PROJECT_DIR$/src/main/java/ru/icc/cells/ssdc/model/CCell.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/icc/cells/ssdc/model/CEntry.java" afterPath="$PROJECT_DIR$/src/main/java/ru/icc/cells/ssdc/model/CEntry.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/icc/cells/ssdc/model/CLabel.java" afterPath="$PROJECT_DIR$/src/main/java/ru/icc/cells/ssdc/model/CLabel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/icc/cells/ssdc/model/CTable.java" afterPath="$PROJECT_DIR$/src/main/java/ru/icc/cells/ssdc/model/CTable.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/icc/cells/ssdc/model/CValue.java" afterPath="$PROJECT_DIR$/src/main/java/ru/icc/cells/ssdc/model/CValue.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/icc/cells/ssdc/model/CanonicalForm.java" afterPath="$PROJECT_DIR$/src/main/java/ru/icc/cells/ssdc/model/CanonicalForm.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ssdc.iml" afterPath="$PROJECT_DIR$/ssdc.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/icc/cells/ssdc/evaluation/EvalBox.java" afterPath="$PROJECT_DIR$/src/main/java/ru/icc/cells/ssdc/evaluation/EvalBox.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/icc/cells/ssdc/evaluation/Evaluator.java" afterPath="$PROJECT_DIR$/src/main/java/ru/icc/cells/ssdc/evaluation/Evaluator.java" />
     </list>
     <ignored path="cais.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -84,17 +47,15 @@
       <file leaf-file-name="Evaluator.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/icc/cells/ssdc/evaluation/Evaluator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="72" column="1" selection-start-line="72" selection-start-column="1" selection-end-line="72" selection-end-column="1" />
+            <state relative-caret-position="55">
+              <caret line="28" column="39" selection-start-line="28" selection-start-column="39" selection-end-line="28" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#main#0;class#Evaluator#0" expanded="false" />
                 <element signature="method#Evaluator#0;class#Evaluator#0" expanded="false" />
                 <element signature="method#load#0;class#Evaluator#0" expanded="false" />
                 <element signature="method#loadResultWorkbook#0;class#Evaluator#0" expanded="false" />
                 <element signature="method#loadGroundTruthWorkbook#0;class#Evaluator#0" expanded="false" />
                 <element signature="method#loadWorkbook#0;class#Evaluator#0" expanded="false" />
-                <element signature="method#evaluate#0;class#Evaluator#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -103,8 +64,8 @@
       <file leaf-file-name="EvalBox.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/icc/cells/ssdc/evaluation/EvalBox.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1751">
-              <caret line="241" column="0" selection-start-line="241" selection-start-column="0" selection-end-line="241" selection-end-column="0" />
+            <state relative-caret-position="540">
+              <caret line="214" column="5" selection-start-line="214" selection-start-column="5" selection-end-line="214" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#readCompData#0;class#EvalBox#0" expanded="false" />
@@ -113,23 +74,16 @@
                 <element signature="method#extractCellFormulaValue#0;class#EvalBox#0" expanded="false" />
                 <element signature="method#extractCellValue#0;class#EvalBox#0" expanded="false" />
                 <element signature="method#evaluate#0;class#EvalBox#0" expanded="false" />
-                <element signature="method#EvalBox#0;class#EvalBox#0" expanded="false" />
-                <element signature="method#traceErrors#0;class#EvalBox#0" expanded="false" />
                 <element signature="method#codeTypeAsString#0;class#Eval#0;class#EvalBox#0" expanded="false" />
-                <element signature="e#7798#7799#0" expanded="true" />
-                <element signature="e#7875#7876#0" expanded="true" />
-                <element signature="e#7919#7920#0" expanded="true" />
-                <element signature="e#7973#7974#0" expanded="true" />
-                <element signature="e#8012#8013#0" expanded="true" />
-                <element signature="e#8061#8062#0" expanded="true" />
-                <element signature="e#8094#8095#0" expanded="true" />
-                <element signature="e#8191#8192#0" expanded="true" />
-                <element signature="e#8227#8228#0" expanded="true" />
-                <element signature="e#8319#8320#0" expanded="true" />
-                <element signature="e#8362#8363#0" expanded="true" />
-                <element signature="e#8410#8411#0" expanded="true" />
+                <element signature="e#10370#10371#0" expanded="true" />
+                <element signature="e#10446#10447#0" expanded="true" />
+                <element signature="e#10490#10491#0" expanded="true" />
+                <element signature="e#10571#10572#0" expanded="true" />
+                <element signature="e#10609#10610#0" expanded="true" />
+                <element signature="e#10704#10705#0" expanded="true" />
+                <element signature="method#traceErrors#0;class#Eval#0;class#EvalBox#0" expanded="false" />
+                <element signature="class#CompData#0;class#EvalBox#0" expanded="false" />
                 <element signature="class#CodeType#0;class#EvalBox#0" expanded="false" />
-                <marker date="1474881901257" expanded="false" signature="10827:11275" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -138,15 +92,13 @@
       <file leaf-file-name="EvalView.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/icc/cells/ssdc/evaluation/EvalView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="474">
-              <caret line="75" column="0" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
+            <state relative-caret-position="242">
+              <caret line="80" column="41" selection-start-line="80" selection-start-column="41" selection-end-line="80" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#increment#0;class#EvalView#0" expanded="false" />
                 <element signature="method#fractionAsString#0;class#EvalView#0" expanded="false" />
-                <element signature="method#trace#0;class#EvalView#0" expanded="false" />
                 <element signature="method#EvalView#0;class#EvalView#0" expanded="false" />
-                <element signature="method#EvalView#1;class#EvalView#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -155,10 +107,18 @@
       <file leaf-file-name="CanonicalForm.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/icc/cells/ssdc/model/CanonicalForm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
+            <state relative-caret-position="901">
               <caret line="89" column="5" selection-start-line="60" selection-start-column="0" selection-end-line="89" selection-end-column="5" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#0#3707#0" expanded="false" />
+                <element signature="e#1188#1189#0" expanded="false" />
+                <element signature="e#1224#1225#0" expanded="false" />
+                <element signature="e#1263#1264#0" expanded="false" />
+                <element signature="e#1292#1293#0" expanded="false" />
+                <element signature="e#1409#1410#0" expanded="false" />
+                <element signature="e#1451#1452#0" expanded="false" />
+                <element signature="e#1497#1498#0" expanded="false" />
+                <element signature="e#1527#1528#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -233,8 +193,8 @@
         <option value="$PROJECT_DIR$/src/main/java/ru/icc/cells/ssdc/evaluation/EvalResult.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/icc/cells/ssdc/evaluation/Eval.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/icc/cells/ssdc/evaluation/EvalView.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/icc/cells/ssdc/evaluation/Evaluator.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/icc/cells/ssdc/evaluation/EvalBox.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/icc/cells/ssdc/evaluation/Evaluator.java" />
       </list>
     </option>
   </component>
@@ -281,8 +241,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -409,7 +367,9 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -745,6 +705,7 @@
       <method />
     </configuration>
     <configuration default="false" name="TANGO2016 Evaluator" type="Application" factoryName="Application">
+      <output_file path="$PROJECT_DIR$/../../experiments/Tango2016/eval.log " is_save="true" />
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="ru.icc.cells.ssdc.evaluation.Evaluator" />
       <option name="VM_PARAMETERS" value="" />
@@ -1270,7 +1231,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1279,13 +1240,12 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40111732" sideWeight="0.089242056" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7793953" sideWeight="0.91075796" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3919373" sideWeight="0.91075796" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960895" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21149144" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3281075" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1299,6 +1259,7 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297619" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3281075" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1608,23 +1569,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="58" column="59" selection-start-line="58" selection-start-column="59" selection-end-line="58" selection-end-column="59" />
-          <folding>
-            <element signature="e#0#22074#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="method#parseInputExcelFileParam#0;class#App#0" expanded="false" />
-            <element signature="method#parseSheetIndexesParam#0;class#App#0" expanded="false" />
-            <element signature="method#parseDrlFileParam#0;class#App#0" expanded="false" />
-            <element signature="method#parseCatDirectoryParam#0;class#App#0" expanded="false" />
-            <element signature="method#parseOutputDirectoryParam#0;class#App#0" expanded="false" />
-            <element signature="method#parseUseCellValueParam#0;class#App#0" expanded="false" />
-            <element signature="method#parseDebuggingModeParam#0;class#App#0" expanded="false" />
-            <element signature="method#traceParsedParams#0;class#App#0" expanded="false" />
-            <element signature="method#loadWorkbook#0;class#App#0" expanded="false" />
-            <element signature="method#loadCatFiles#0;class#App#0" expanded="false" />
-            <element signature="e#16387#16388#0" expanded="false" />
-            <element signature="e#16415#16416#0" expanded="false" />
-            <element signature="method#fireRules#0;class#App#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1632,11 +1576,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="26" column="77" selection-start-line="26" selection-start-column="77" selection-end-line="26" selection-end-column="77" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1858#1859#0" expanded="false" />
-            <element signature="e#1891#1892#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1644,7 +1583,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="21" column="64" selection-start-line="21" selection-start-column="64" selection-end-line="21" selection-end-column="64" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1652,9 +1590,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="26" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1662,10 +1597,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="487">
           <caret line="158" column="16" selection-start-line="158" selection-start-column="16" selection-end-line="158" selection-end-column="16" />
-          <folding>
-            <element signature="e#2850#2851#0" expanded="false" />
-            <element signature="e#2932#2933#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1695,27 +1626,23 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="261" column="23" selection-start-line="261" selection-start-column="18" selection-end-line="261" selection-end-column="23" />
-          <folding>
-            <element signature="method#CTable#0;class#CTable#0" expanded="false" />
-            <element signature="method#writeToExcel#1;class#CTable#0" expanded="false" />
-            <element signature="method#toCanonicalForm#0;class#CTable#0" expanded="false" />
-            <element signature="method#trace#0;class#CTable#0" expanded="false" />
-            <element signature="method#numOfNotEmptyCells#0;class#CTable#0" expanded="false" />
-            <element signature="method#numOfLL#0;class#CTable#0" expanded="false" />
-            <element signature="method#numOfEL#0;class#CTable#0" expanded="false" />
-            <element signature="method#numOfCL#0;class#CTable#0" expanded="false" />
-            <element signature="method#update#0;class#CTable#0" expanded="false" />
-            <element signature="method#setDefaultCategory#0;class#CTable#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/icc/cells/ssdc/model/CanonicalForm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
+        <state relative-caret-position="901">
           <caret line="89" column="5" selection-start-line="60" selection-start-column="0" selection-end-line="89" selection-end-column="5" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#0#3707#0" expanded="false" />
+            <element signature="e#1188#1189#0" expanded="false" />
+            <element signature="e#1224#1225#0" expanded="false" />
+            <element signature="e#1263#1264#0" expanded="false" />
+            <element signature="e#1292#1293#0" expanded="false" />
+            <element signature="e#1409#1410#0" expanded="false" />
+            <element signature="e#1451#1452#0" expanded="false" />
+            <element signature="e#1497#1498#0" expanded="false" />
+            <element signature="e#1527#1528#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1724,29 +1651,26 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
           <caret line="48" column="12" selection-start-line="48" selection-start-column="12" selection-end-line="48" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/icc/cells/ssdc/evaluation/EvalView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="474">
-          <caret line="75" column="0" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
+        <state relative-caret-position="242">
+          <caret line="80" column="41" selection-start-line="80" selection-start-column="41" selection-end-line="80" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#increment#0;class#EvalView#0" expanded="false" />
             <element signature="method#fractionAsString#0;class#EvalView#0" expanded="false" />
-            <element signature="method#trace#0;class#EvalView#0" expanded="false" />
             <element signature="method#EvalView#0;class#EvalView#0" expanded="false" />
-            <element signature="method#EvalView#1;class#EvalView#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/icc/cells/ssdc/evaluation/EvalBox.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1751">
-          <caret line="241" column="0" selection-start-line="241" selection-start-column="0" selection-end-line="241" selection-end-column="0" />
+        <state relative-caret-position="540">
+          <caret line="214" column="5" selection-start-line="214" selection-start-column="5" selection-end-line="214" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#readCompData#0;class#EvalBox#0" expanded="false" />
@@ -1755,40 +1679,31 @@
             <element signature="method#extractCellFormulaValue#0;class#EvalBox#0" expanded="false" />
             <element signature="method#extractCellValue#0;class#EvalBox#0" expanded="false" />
             <element signature="method#evaluate#0;class#EvalBox#0" expanded="false" />
-            <element signature="method#EvalBox#0;class#EvalBox#0" expanded="false" />
-            <element signature="method#traceErrors#0;class#EvalBox#0" expanded="false" />
             <element signature="method#codeTypeAsString#0;class#Eval#0;class#EvalBox#0" expanded="false" />
-            <element signature="e#7798#7799#0" expanded="true" />
-            <element signature="e#7875#7876#0" expanded="true" />
-            <element signature="e#7919#7920#0" expanded="true" />
-            <element signature="e#7973#7974#0" expanded="true" />
-            <element signature="e#8012#8013#0" expanded="true" />
-            <element signature="e#8061#8062#0" expanded="true" />
-            <element signature="e#8094#8095#0" expanded="true" />
-            <element signature="e#8191#8192#0" expanded="true" />
-            <element signature="e#8227#8228#0" expanded="true" />
-            <element signature="e#8319#8320#0" expanded="true" />
-            <element signature="e#8362#8363#0" expanded="true" />
-            <element signature="e#8410#8411#0" expanded="true" />
+            <element signature="e#10370#10371#0" expanded="true" />
+            <element signature="e#10446#10447#0" expanded="true" />
+            <element signature="e#10490#10491#0" expanded="true" />
+            <element signature="e#10571#10572#0" expanded="true" />
+            <element signature="e#10609#10610#0" expanded="true" />
+            <element signature="e#10704#10705#0" expanded="true" />
+            <element signature="method#traceErrors#0;class#Eval#0;class#EvalBox#0" expanded="false" />
+            <element signature="class#CompData#0;class#EvalBox#0" expanded="false" />
             <element signature="class#CodeType#0;class#EvalBox#0" expanded="false" />
-            <marker date="1474881901257" expanded="false" signature="10827:11275" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/icc/cells/ssdc/evaluation/Evaluator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="72" column="1" selection-start-line="72" selection-start-column="1" selection-end-line="72" selection-end-column="1" />
+        <state relative-caret-position="55">
+          <caret line="28" column="39" selection-start-line="28" selection-start-column="39" selection-end-line="28" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#main#0;class#Evaluator#0" expanded="false" />
             <element signature="method#Evaluator#0;class#Evaluator#0" expanded="false" />
             <element signature="method#load#0;class#Evaluator#0" expanded="false" />
             <element signature="method#loadResultWorkbook#0;class#Evaluator#0" expanded="false" />
             <element signature="method#loadGroundTruthWorkbook#0;class#Evaluator#0" expanded="false" />
             <element signature="method#loadWorkbook#0;class#Evaluator#0" expanded="false" />
-            <element signature="method#evaluate#0;class#Evaluator#0" expanded="false" />
           </folding>
         </state>
       </provider>
