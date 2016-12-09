@@ -525,9 +525,9 @@ public final class App
 
                     String fileName = FilenameUtils.removeExtension( inputExcelFile.getName() );
 
-                    //String outFileName = String.format("%s\\%s_%s_%s.xlsx", outputDirectory, fileName, sheetNo, tableNo);
+                    String outFileName = String.format("%s\\%s_%s_%s.xlsx", outputDirectory, fileName, sheetNo, tableNo);
+                    //String outFileName = String.format("%s\\%s.xlsx", outputDirectory, sheetName);
 
-                    String outFileName = String.format("%s\\%s.xlsx", outputDirectory, sheetName);
                     //System.out.println(outFileName);
                     //canonicalForm.writeToExcel(new File(outFileName));
                     EvaluationExcelWriter writer = new EvaluationExcelWriter(new File(outFileName));
