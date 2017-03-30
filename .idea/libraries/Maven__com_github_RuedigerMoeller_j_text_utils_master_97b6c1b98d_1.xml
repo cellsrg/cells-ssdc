@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.github.RuedigerMoeller:j-text-utils:master-97b6c1b98d-1">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/github/RuedigerMoeller/j-text-utils/master-97b6c1b98d-1/j-text-utils-master-97b6c1b98d-1.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/github/RuedigerMoeller/j-text-utils/master-97b6c1b98d-1/j-text-utils-master-97b6c1b98d-1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/github/RuedigerMoeller/j-text-utils/master-97b6c1b98d-1/j-text-utils-master-97b6c1b98d-1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
