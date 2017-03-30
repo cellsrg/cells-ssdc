@@ -25,6 +25,8 @@ install:
 
 clean:
 	mvn clean
+	# Also remove "out" and everything under it.
+	rm -rf out/
 
 run: assembly-single
 	./ssdc.sh
