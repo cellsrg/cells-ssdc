@@ -8,17 +8,39 @@
     <artifactId>ssdc</artifactId>
     <version>0.1</version>
 
+    <build>
+      <plugins>
+        <plugin>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <configuration>
+            <source>1.4</source>
+            <target>1.4</target>
+          </configuration>
+        </plugin>
+      </plugins>
+    </build>
+
+    <properties>
+      <maven.compiler.source>1.8</maven.compiler.source>
+      <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+
     <repositories>
 
         <repository>
             <id>d-maven</id>
             <url>http://d-maven.googlecode.com/svn/trunk/repo</url>
         </repository>
-
-        <repository>
+        <!--
+            <repository>
             <id>Sonatype-public</id>
             <name>SnakeYAML repository</name>
             <url>http://oss.sonatype.org/content/groups/public/</url>
+            </repository>
+        -->
+        <repository>
+          <id>jitpack.io</id>
+          <url>https://jitpack.io</url>
         </repository>
 
     </repositories>
@@ -99,9 +121,9 @@
         </dependency>
 
         <dependency>
-            <groupId>dnl.utils</groupId>
+            <groupId>com.github.RuedigerMoeller</groupId>
             <artifactId>j-text-utils</artifactId>
-            <version>0.3.3</version>
+            <version>master-SNAPSHOT</version>
         </dependency>
 
         <dependency>
@@ -114,7 +136,7 @@
         <dependency>
             <groupId>org.yaml</groupId>
             <artifactId>snakeyaml</artifactId>
-            <version>1.16-SNAPSHOT</version>
+            <version>1.18</version>
         </dependency>
 
         <dependency>
