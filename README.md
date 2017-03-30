@@ -37,7 +37,7 @@ then it works.
 
 There is a Makefile that can be used to build project's artifacts (now it is just the stand-alone executable JAR).
 
-```shell
+```bash
 make build    # build executable JAR
 make run      # Run the script
 ```
