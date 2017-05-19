@@ -1,5 +1,5 @@
 # cells-ssdc
-Research System for Rule-Based Canonicalization of Arbitrary Tables in Spreadsheets
+A prototype of a research system for rule-based transformation spreadsheet data from arbitrary to relational tables
 
 ## Build with Apache maven
 
