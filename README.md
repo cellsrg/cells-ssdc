@@ -1,5 +1,5 @@
 # cells-ssdc
-A prototype of a research system for rule-based transformation spreadsheet data from arbitrary to relational tables
+A prototype of the system for rule-based transformation spreadsheet data from arbitrary to relational tables
 
 ## Build with Apache maven
 
