@@ -1,3 +1,6 @@
+# DEPRECATED
+This is no longer supported, please consider using [TabbyXL2](https://github.com/cellsrg/tabbyxl2) instead.
+
 # cells-ssdc
 A prototype of the system for rule-based transformation spreadsheet data from arbitrary to relational tables
 
